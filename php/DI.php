@@ -9,7 +9,7 @@ class TestDB implements DatabaseCredentialInterface
 
 class ProductionDB implements DatabaseCredentialInterface
 {
-  protected $credential = 'mysql://root:password@localhost:3306/production_db_class';
+  public $credential = 'mysql://root:password@localhost:3306/production_db_class';
   public function __construct() {}
 }
 
