@@ -3,18 +3,18 @@
 
 int main()
 {
-  int a = 1;
-  int b = 2;
-  int c = 3;
-  int d = 4;
+  unsigned int a = 192;
+  unsigned int b = 168;
+  unsigned int c = 43;
+  unsigned int d = 1;
 
   int total = (a << 0) + (b << 8) + (c << 16) + (d << 24);
 
   printf("total is %d\n", total);
-  printf("a %d == %d\n", total << 24 >> 24, a);
-  printf("b %d == %d\n", total << 16 >> 24, b);
-  printf("c %d == %d\n", total << 8 >> 24, c);
-  printf("d %d == %d\n", total >> 24, d);
+  printf("a %d == %d\n", (unsigned) total << 24 >> 24, a);
+  printf("b %d == %d\n", (unsigned) total << 16 >> 24, b);
+  printf("c %d == %d\n", (unsigned) total << 8 >> 24, c);
+  printf("d %d == %d\n", (unsigned) total >> 24, d);
 
   // 7654 3210
   // 0000 1010
