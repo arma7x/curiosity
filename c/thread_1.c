@@ -31,9 +31,11 @@ void *cage(void *n)
     printf("Release all krakens in 2 seconds\n");
     sleep(2);
     printf("GO!!!!!!!!!\n");
-    pthread_cond_broadcast(&condition_cond);
+    //pthread_cond_broadcast(&condition_cond);
+    //pthread_mutex_lock(&condition_mutex);
     for (int i=0;i<num;i++)
       pthread_cond_signal(&condition_cond);
+    //pthread_mutex_unlock(&condition_mutex);
     return NULL;
 }
 
