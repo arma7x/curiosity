@@ -1,16 +1,15 @@
 <?php
 
-interface DatabaseCredentialInterface{}
+interface CredentialInterface{}
 
-class TestDB implements DatabaseCredentialInterface
+class TestCredential implements CredentialInterface
 {
-  public $credential = 'mysql://root:password@localhost:3306/test_db_class';
+  public $credential = 'mysql://root:password@localhost:3306/TestDB';
 }
 
-class ProductionDB implements DatabaseCredentialInterface
+class ProdCredential implements CredentialInterface
 {
-  public $credential = 'mysql://root:password@localhost:3306/production_db_class';
-  public function __construct() {}
+  public $credential = 'mysql://root:password@localhost:3306/ProdDB';
 }
 
 interface DatabaseInterface
@@ -22,12 +21,12 @@ class MySQL implements DatabaseInterface
 {
 
   private $credential;
-  private $credential_from_class;
+  private $credential_from_constructor;
 
-  public function __construct(DatabaseCredentialInterface $credential)
+  public function __construct(CredentialInterface $credential)
   {
-    $this->credential = 'mysql://root:password@localhost:3306/test_db';
-    $this->credential_from_class = $credential;
+    $this->credential = 'mysql://root:password@localhost:3306/MySQL';
+    $this->credential_from_constructor = $credential;
   }
 
   public function getCredential(): string
@@ -35,15 +34,38 @@ class MySQL implements DatabaseInterface
     return $this->credential;
   }
 
-  public function getCredentialFromClass(): DatabaseCredentialInterface
+  public function getCredentialFromConstructor(): CredentialInterface
   {
-    return $this->credential_from_class;
+    return $this->credential_from_constructor;
+  }
+}
+
+class PostgreSQL implements DatabaseInterface
+{
+
+  private $credential;
+  private $credential_from_constructor;
+
+  public function __construct(CredentialInterface $credential)
+  {
+    $this->credential = 'mysql://root:password@localhost:3306/PostgreSQL';
+    $this->credential_from_constructor = $credential;
+  }
+
+  public function getCredential(): string
+  {
+    return $this->credential;
+  }
+
+  public function getCredentialFromConstructor(): CredentialInterface
+  {
+    return $this->credential_from_constructor;
   }
 }
 
 $repository = [
-  DatabaseInterface::class => MySQL::class,
-  DatabaseCredentialInterface::class => TestDB::class // ProductionDB
+  DatabaseInterface::class => MySQL::class, // or PostgreSQL::class
+  CredentialInterface::class => TestCredential::class // ProdCredential::class
 ];
 
 class DatabaseHandler
@@ -78,4 +100,4 @@ function resolve($class, $repository) {
 
 $instance = resolve(DatabaseHandler::class, $repository);
 echo $instance->getDB()->getCredential() . PHP_EOL;
-echo $instance->getDB()->getCredentialFromClass()->credential . PHP_EOL;
+echo $instance->getDB()->getCredentialFromConstructor()->credential . PHP_EOL;
