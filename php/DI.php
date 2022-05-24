@@ -65,7 +65,7 @@ class PostgreSQL implements DatabaseInterface
 
 $repository = [
   DatabaseInterface::class => MySQL::class, // or PostgreSQL::class
-  CredentialInterface::class => TestCredential::class // ProdCredential::class
+  CredentialInterface::class => TestCredential::class // or ProdCredential::class
 ];
 
 class DatabaseHandler
