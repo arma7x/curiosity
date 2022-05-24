@@ -4,12 +4,12 @@ interface CredentialInterface{}
 
 class TestCredential implements CredentialInterface
 {
-  public $credential = 'mysql://root:password@localhost:3306/TestDB';
+  public string $credential = 'mysql://root:password@localhost:3306/TestDB';
 }
 
 class ProdCredential implements CredentialInterface
 {
-  public $credential = 'mysql://root:password@localhost:3306/ProdDB';
+  public string $credential = 'mysql://root:password@localhost:3306/ProdDB';
 }
 
 interface DatabaseInterface
@@ -20,8 +20,8 @@ interface DatabaseInterface
 class MySQL implements DatabaseInterface
 {
 
-  private $credential;
-  private $credential_from_constructor;
+  private string $credential;
+  private CredentialInterface $credential_from_constructor;
 
   public function __construct(CredentialInterface $credential)
   {
@@ -43,8 +43,8 @@ class MySQL implements DatabaseInterface
 class PostgreSQL implements DatabaseInterface
 {
 
-  private $credential;
-  private $credential_from_constructor;
+  private string $credential;
+  private CredentialInterface $credential_from_constructor;
 
   public function __construct(CredentialInterface $credential)
   {
@@ -70,7 +70,7 @@ $repository = [
 
 class DatabaseHandler
 {
-  private $db;
+  private DatabaseInterface $db;
 
   public function __construct(DatabaseInterface $db) {
     $this->db = $db;
