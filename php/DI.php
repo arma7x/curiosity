@@ -15,6 +15,7 @@ class ProdCredential implements CredentialInterface
 interface DatabaseInterface
 {
   public function getCredential(): string;
+  public function getCredentialFromConstructor(): CredentialInterface;
 }
 
 class MySQL implements DatabaseInterface
