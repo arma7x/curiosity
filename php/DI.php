@@ -7,7 +7,7 @@ interface CredentialInterface {
 class TestCredential implements CredentialInterface {
 
   public function getCredential(): string {
-    return 'mysql://root:password@localhost:3306/TestDB';
+    return 'root:password@localhost:3306/TestDB';
   }
 
 }
@@ -15,7 +15,7 @@ class TestCredential implements CredentialInterface {
 class ProdCredential implements CredentialInterface {
 
   public function getCredential(): string {
-    return 'mysql://root:password@localhost:3306/ProdDB';
+    return 'root:password@localhost:3306/ProdDB';
   }
 
 }
@@ -37,7 +37,7 @@ class MySQL implements DatabaseInterface {
   }
 
   public function getCredential(): string {
-    return $this->credentialConstructor->getCredential();
+    return "mysql://" . $this->credentialConstructor->getCredential();
   }
 
   public function getCredentialConstructor(): CredentialInterface
@@ -55,7 +55,7 @@ class PostgreSQL implements DatabaseInterface {
   }
 
   public function getCredential(): string {
-    return $this->credentialConstructor->getCredential();
+    return "postgres://" . $this->credentialConstructor->getCredential();
   }
 
   public function getCredentialConstructor(): CredentialInterface {
