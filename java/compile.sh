@@ -1,11 +1,13 @@
 #! /bin/bash
 
-./clean.sh
-
+rm -R ./classes/* 2> /dev/null
+cd ./src
 find . -name "*.java" -print0 | while read -d $'\0' file
 do
-  javac -d . "$file"
+  javac -d ../classes "$file"
   echo "Compile: $file"
 done
-
-java Main
+cd ../ && cd ./classes
+jar cvf ../Main.jar * && cd ../
+clear
+java -cp Main.jar Main
