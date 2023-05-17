@@ -9,5 +9,6 @@ do
 done
 cd ../ && cd ./classes
 jar cvf ../Main.jar * && cd ../
+rm -R ./classes/* 2> /dev/null
 clear
 java -cp Main.jar Main
