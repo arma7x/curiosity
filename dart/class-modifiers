@@ -1,0 +1,9 @@
+// https://dart.dev/language/class-modifiers
+
+            CONSTRUCT   EXTENDS IMPLEMENTS
+abstract        N          Y        Y
+base            N          Y        N
+final           Y          N        N
+interface       Y          N        Y
+sealed          N          -        -
+mixin           Y(class)   N        N
