@@ -7,18 +7,20 @@ class Point {
   // Point(this.x, this.y, this.z);
 
   /*
-   * Point(this.x, this.y, double z) {
+  Point(this.x, this.y, double z) {
     z = z;
   }
   */
 
-  // Point(double x, double y): x=x,y=y ;
+  // Point(double x, double y, this.z): x=x,y=y ;
 
-  Point(double x, double y, double z): x=x,y=y { // Initializer list
-    z = z;
+  // Point(double x, double y, double z): x=x,y=y,z=z ;
+
+  Point(double x, double y, double z): x=x,y=y { // -> Initializer list
+     z = z;
   }
 
-  /* illegal
+  /* ILLEGAL
   Point(double x, double y, double z) {
     this.x = x;
     this.y = y;
@@ -50,10 +52,12 @@ class Employee extends Person {
   Employee.fromName(String data) : super.fromName(data) {
     print('$firstName in Employee');
   }
-/*
+
+  /*
   Employee.fromName(super.data) : super.fromName() {
     print('$firstName in Employee');
   }*/
+
 }
 
 class Vector2d {
