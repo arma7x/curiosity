@@ -58,7 +58,21 @@ Stream<int> asyncStreamGenerator(int n) async* {
   while (k < n) yield k++;
 }
 
+Map<dynamic, Function> dict= {};
+
+class Foo {}
+class Bar {}
+
+void addToDict<T>(Function fn) {
+  dict[T] = fn;
+}
+
+Function? getFromDict<T>() {
+  return dict[T] ?? null;
+}
+
 void main() async {
+
   var name = "John";
   // name = 12;   // error
   dynamic age = 12;
@@ -137,4 +151,11 @@ void main() async {
     print("async $element");
   }
 
+  addToDict<Foo>(() => Foo());
+  Function? fooFn = getFromDict<Foo>();
+  print(fooFn != null ? fooFn() : 'Foo not exist');
+
+  addToDict<Bar>(() => Bar());
+  Function? barFn = getFromDict<Bar>();
+  print(barFn != null ? barFn() : 'Bar not exist');
 }
