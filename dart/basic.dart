@@ -60,8 +60,17 @@ Stream<int> asyncStreamGenerator(int n) async* {
 
 Map<dynamic, Function> dict= {};
 
-class Foo {}
-class Bar {}
+class Foo {
+  static String GetName() {
+    return "Foo";
+  }
+}
+
+class Bar {
+  static String GetName() {
+    return "Bar";
+  }
+}
 
 void addToDict<T>(Function fn) {
   dict[T] = fn;
@@ -153,9 +162,9 @@ void main() async {
 
   addToDict<Foo>(() => Foo());
   Function? fooFn = getFromDict<Foo>();
-  print(fooFn != null ? fooFn() : 'Foo not exist');
+  print(fooFn != null ? fooFn() is Foo : 'Foo not exist');
 
   addToDict<Bar>(() => Bar());
   Function? barFn = getFromDict<Bar>();
-  print(barFn != null ? barFn() : 'Bar not exist');
+  print(barFn != null ? barFn() is Bar : 'Bar not exist');
 }
