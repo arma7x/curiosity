@@ -76,11 +76,39 @@ void addToDict<T>(Function fn) {
   dict[T] = fn;
 }
 
+void namedParameter({String? foo, required int bar}) {}
+void optionalParameter([String? foo, int? bar]) {}
+
 Function? getFromDict<T>() {
   return dict[T] ?? null;
 }
 
+Future<String> getWeatherForecast(String val) {
+  return Future<String>.value(val);
+}
+
+printWeatherForecast(String val) async {
+  await Future.delayed(Duration(seconds: 2), () => print(val));
+}
+
 void main() async {
+
+  Future<String> cloudy = getWeatherForecast("Partly Cloudy");
+  await printWeatherForecast(await cloudy);
+
+  String rain = await getWeatherForecast("Rain");
+  await printWeatherForecast(await rain);
+
+  namedParameter(bar: 1);
+  namedParameter(foo: "foo", bar: 1);
+  namedParameter(bar: 1);
+  // namedParameter(); illegal
+
+  optionalParameter(null);
+  optionalParameter(null, 1);
+  optionalParameter("Foo", null);
+  optionalParameter("Foo");
+  optionalParameter();
 
   var name = "John";
   // name = 12;   // error
