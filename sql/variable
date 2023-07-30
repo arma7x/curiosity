@@ -1,0 +1,33 @@
+SET @var_name = expression
+
+--
+
+SET @var1 = 2 + 6;
+SET @var2 := @var1 - 2;
+SELECT @var1, @var2;
+
+--
+
+SELECT @var3; -- null
+
+--
+
+SET @var1 = 1;
+SET @var1 := 2;
+SELECT @var1;
+SELECT @var1 := 4;
+SELECT @var1;
+
+--
+
+SELECT @var1 := 4;
+
+--
+
+SET @min = 20;
+SELECT *
+FROM `athletes`
+WHERE bmi > @min
+LIMIT 50
+
+--

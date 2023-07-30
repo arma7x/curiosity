@@ -1,0 +1,11 @@
+-- https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_all
+
+SELECT SupplierID, SupplierName
+FROM Suppliers
+WHERE SupplierID IN (SELECT SupplierID FROM Products WHERE Price < 20)
+
+-- OR
+
+SELECT SupplierID, SupplierName
+FROM Suppliers
+WHERE SupplierID IN (SELECT SupplierID FROM Products WHERE Price < 20 AND Products.SupplierID = Suppliers.supplierID)

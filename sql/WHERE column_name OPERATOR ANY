@@ -1,0 +1,11 @@
+-- https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_all
+
+SELECT ProductID, ProductName
+FROM Products
+WHERE ProductID = ANY (SELECT ProductID FROM OrderDetails WHERE Quantity = 10);
+
+-- or
+
+SELECT ProductID, ProductName
+FROM Products
+WHERE ProductID = ANY (SELECT ProductID FROM OrderDetails WHERE Quantity = 10 AND Products.ProductID = OrderDetails.ProductID);

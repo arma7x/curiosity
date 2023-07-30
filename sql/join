@@ -1,0 +1,30 @@
+SELECT athletes.id, athletes.bmi, mathematicians.iq from athletes
+LEFT JOIN mathematicians
+ON mathematicians.id=athletes.id
+
+SELECT athletes.id, athletes.bmi, mathematicians.iq from athletes
+LEFT JOIN mathematicians
+ON mathematicians.id=athletes.id
+WHERE mathematicians.id IS NOT NULL
+
+//
+SELECT mathematicians.id, athletes.bmi, mathematicians.iq from athletes
+RIGHT JOIN mathematicians
+ON mathematicians.id=athletes.id
+
+SELECT mathematicians.id, athletes.bmi, mathematicians.iq from athletes
+RIGHT JOIN mathematicians
+ON mathematicians.id=athletes.id
+WHERE athletes.id IS NOT NULL
+
+//
+SELECT * from athletes
+INNER JOIN mathematicians
+ON mathematicians.id=athletes.id
+
+//
+SELECT * from athletes
+LEFT JOIN mathematicians ON mathematicians.id = athletes.id
+UNION
+SELECT * from mathematicians
+LEFT JOIN athletes ON athletes.id = mathematicians.id

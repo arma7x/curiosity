@@ -1,0 +1,5 @@
+SET @rank=0, @prev_quantity=0;
+
+Select `OrderDetailID`, `OrderID`, `ProductID`, if (@prev_quantity != Quantity, @rank:=@rank+1, @rank) as `rank`, @prev_quantity:=Quantity as `Quantity`
+FROM (SELECT * FROM `order_details` ORDER BY `Quantity` DESC LIMIT 10) as Temp
+ORDER BY `Quantity` DESC;

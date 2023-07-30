@@ -1,0 +1,2 @@
+SQL SERVER  =>  SELECT * INTO athletes IN 'test.backup' FROM athletes;
+MYSQL       =>  CREATE TABLE test_backup.athletes SELECT * FROM athletes;
