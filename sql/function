@@ -1,0 +1,23 @@
+-- show
+SHOW FUNCTION STATUS WHERE db = 'test';
+
+SELECT ROUTINE_NAME
+FROM INFORMATION_SCHEMA.ROUTINES
+WHERE
+  ROUTINE_TYPE="FUNCTION"
+  AND ROUTINE_SCHEMA="test";
+
+-- create
+DELIMITER $$
+
+CREATE FUNCTION no_of_years(date1 date) RETURNS int DETERMINISTIC
+BEGIN
+ DECLARE date2 DATE;
+  Select current_date()into date2;
+  RETURN year(date2)-year(date1);
+END$$
+
+DELIMITER ;
+
+-- remove
+DROP FUNCTION no_of_years;

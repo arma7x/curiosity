@@ -1,0 +1,26 @@
+-- show
+SHOW PROCEDURE STATUS WHERE db = 'test';
+
+SELECT ROUTINE_NAME
+FROM INFORMATION_SCHEMA.ROUTINES
+WHERE
+  ROUTINE_TYPE="PROCEDURE"
+  AND ROUTINE_SCHEMA="test";
+
+-- create
+DELIMITER $$
+
+CREATE PROCEDURE GetPersons()
+BEGIN
+	SELECT
+		*
+	FROM
+		`persons`;
+END$$
+DELIMITER;
+
+-- call
+CALL GetPersons();
+
+-- remove
+DROP PROCEDURE GetPersons;
